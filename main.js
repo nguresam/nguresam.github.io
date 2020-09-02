@@ -51,3 +51,15 @@ function dateBuilder (d) {
 
     return `${day} ${date} ${month} ${year}`;
 }
+
+
+
+//Make sure sw are supported
+if('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('./sw_cachedPages.js')
+          .then(reg => console.log('Service Worker:Registered'))
+          .catch(err => console.log(`Service Worker: Error: ${err}`))
+    })
+}
