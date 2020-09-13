@@ -9,7 +9,7 @@ searchbox.addEventListener('keypress', setQuery);
 function setQuery(evt) {
     if(evt.keyCode == 13) {
         getResults(searchbox.value);
-        console.log(searchbox.value);
+        localStorage.setItem("city", searchbox.value);
     }
 }
 
@@ -52,7 +52,11 @@ function dateBuilder (d) {
     return `${day} ${date} ${month} ${year}`;
 }
 
-
+window.onload = () =>{
+    const city =  localStorage.getItem('city') ?? "London";
+    if(!!city) getResults(city);
+    
+}
 
 //Make sure sw are supported
 if('serviceWorker' in navigator) {
